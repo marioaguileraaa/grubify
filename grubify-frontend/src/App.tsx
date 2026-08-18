@@ -16,37 +16,59 @@ import './App.css';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#FF6B35', // Orange
-      light: '#FF8A65',
-      dark: '#E65100',
+      main: '#00704A', // El Corte Inglés Green
+      light: '#339769',
+      dark: '#004D33',
     },
     secondary: {
-      main: '#4CAF50', // Green
-      light: '#81C784',
-      dark: '#388E3C',
+      main: '#1A1A1A', // Black
+      light: '#4A4A4A',
+      dark: '#000000',
     },
     background: {
-      default: '#F5F5F5',
+      default: '#F8F8F8',
       paper: '#FFFFFF',
     },
   },
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif',
     h1: {
       fontSize: '3rem',
       fontWeight: 700,
+      letterSpacing: '-0.02em',
     },
     h2: {
       fontSize: '2.5rem',
       fontWeight: 600,
+      letterSpacing: '-0.01em',
     },
     h3: {
       fontSize: '2rem',
       fontWeight: 600,
     },
+    h4: {
+      fontWeight: 600,
+    },
+    h5: {
+      fontWeight: 600,
+    },
+    h6: {
+      fontWeight: 600,
+    },
+    body1: {
+      fontFamily: '"Inter", "Helvetica", "Arial", sans-serif',
+    },
+    body2: {
+      fontFamily: '"Inter", "Helvetica", "Arial", sans-serif',
+    },
+    button: {
+      fontFamily: '"Inter", "Helvetica", "Arial", sans-serif',
+      textTransform: 'none' as const,
+      fontWeight: 500,
+    },
   },
   shape: {
-    borderRadius: 12,
+    borderRadius: 8,
   },
 });
 

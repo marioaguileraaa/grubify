@@ -18,7 +18,7 @@ import {
 } from '@mui/material';
 import {
   AccessTime as TimeIcon,
-  DeliveryDining as DeliveryIcon,
+  LocalShipping as DeliveryIcon,
   Search as SearchIcon,
 } from '@mui/icons-material';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -26,15 +26,13 @@ import { Restaurant } from '../types';
 import { restaurantService } from '../services/api';
 
 const cuisineTypes = [
-  'All',
-  'Italian',
-  'Japanese',
-  'Indian',
-  'American',
-  'Healthy',
-  'Chinese',
-  'Mexican',
-  'Thai',
+  'Todos',
+  'Hombre',
+  'Mujer',
+  'Niños',
+  'Accesorios',
+  'Calzado',
+  'Deportivo',
 ];
 
 const HomePage: React.FC = () => {
@@ -44,7 +42,7 @@ const HomePage: React.FC = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState<Restaurant[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedCuisine, setSelectedCuisine] = useState('All');
+  const [selectedCuisine, setSelectedCuisine] = useState('Todos');
   const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
 
   useEffect(() => {
@@ -62,7 +60,7 @@ const HomePage: React.FC = () => {
       setRestaurants(data);
       setError(null);
     } catch (err) {
-      setError('Failed to load restaurants. Please try again later.');
+      setError('Error al cargar los departamentos. Inténtalo de nuevo más tarde.');
       console.error('Error fetching restaurants:', err);
     } finally {
       setLoading(false);
@@ -73,7 +71,7 @@ const HomePage: React.FC = () => {
     let filtered = restaurants;
 
     // Filter by cuisine
-    if (selectedCuisine !== 'All') {
+    if (selectedCuisine !== 'Todos') {
       filtered = filtered.filter(restaurant => 
         restaurant.cuisineType.toLowerCase() === selectedCuisine.toLowerCase()
       );
@@ -123,7 +121,7 @@ const HomePage: React.FC = () => {
       {/* Hero Section */}
       <Box
         sx={{
-          backgroundImage: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 100%)',
+          backgroundImage: 'linear-gradient(135deg, #00704A 0%, #004D33 100%)',
           borderRadius: 3,
           color: 'white',
           p: 6,
@@ -132,10 +130,10 @@ const HomePage: React.FC = () => {
         }}
       >
         <Typography variant="h2" component="h1" gutterBottom>
-          Delicious Food, Delivered Fast
+          Moda y Estilo, Entrega Rápida
         </Typography>
         <Typography variant="h6" sx={{ mb: 4, opacity: 0.9 }}>
-          Order from your favorite restaurants and get it delivered in minutes
+          Descubre las últimas tendencias y recíbelas en tu hogar
         </Typography>
         
         {/* Search Bar */}
@@ -143,7 +141,7 @@ const HomePage: React.FC = () => {
           <TextField
             fullWidth
             variant="outlined"
-            placeholder="Search for restaurants, cuisine, or dishes..."
+            placeholder="Buscar departamentos, categorías o prendas..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             InputProps={{
@@ -164,7 +162,7 @@ const HomePage: React.FC = () => {
       {/* Cuisine Filter */}
       <Box sx={{ mb: 4 }}>
         <Typography variant="h5" gutterBottom>
-          Browse by Cuisine
+          Explorar por Categoría
         </Typography>
         <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
           {cuisineTypes.map((cuisine) => (
@@ -184,10 +182,10 @@ const HomePage: React.FC = () => {
       {/* Results Header */}
       <Box sx={{ mb: 3 }}>
         <Typography variant="h5" gutterBottom>
-          {searchQuery ? `Search Results for "${searchQuery}"` : 'Popular Restaurants'}
+          {searchQuery ? `Resultados de búsqueda para "${searchQuery}"` : 'Departamentos Destacados'}
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          {filteredRestaurants.length} restaurant{filteredRestaurants.length !== 1 ? 's' : ''} found
+          {filteredRestaurants.length} departamento{filteredRestaurants.length !== 1 ? 's' : ''} encontrado{filteredRestaurants.length !== 1 ? 's' : ''}
         </Typography>
       </Box>
 
@@ -274,7 +272,7 @@ const HomePage: React.FC = () => {
                   handleRestaurantClick(restaurant.id);
                 }}
               >
-                View Menu
+                Ver Colección
               </Button>
             </CardActions>
           </Card>
@@ -284,10 +282,10 @@ const HomePage: React.FC = () => {
       {filteredRestaurants.length === 0 && !loading && (
         <Box textAlign="center" py={8}>
           <Typography variant="h6" color="text.secondary" gutterBottom>
-            No restaurants found
+            No se encontraron departamentos
           </Typography>
           <Typography variant="body1" color="text.secondary">
-            Try adjusting your search or filter criteria
+            Intenta ajustar tu búsqueda o filtros
           </Typography>
         </Box>
       )}

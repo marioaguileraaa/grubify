@@ -39,7 +39,7 @@ const CartPage: React.FC = () => {
       setCart(cartData);
       setError(null);
     } catch (err) {
-      setError('Failed to load cart. Please try again later.');
+      setError('Error al cargar el carrito. Inténtalo de nuevo más tarde.');
       console.error('Error fetching cart:', err);
     } finally {
       setLoading(false);
@@ -100,7 +100,7 @@ const CartPage: React.FC = () => {
         </Alert>
         <Box display="flex" justifyContent="center" mt={2}>
           <Button variant="contained" onClick={fetchCart}>
-            Try Again
+            Reintentar
           </Button>
         </Box>
       </Container>
@@ -113,13 +113,13 @@ const CartPage: React.FC = () => {
         <Box textAlign="center" py={8}>
           <CartIcon sx={{ fontSize: 80, color: 'text.secondary', mb: 2 }} />
           <Typography variant="h4" gutterBottom>
-            Your cart is empty
+            Tu carrito está vacío
           </Typography>
           <Typography variant="body1" color="text.secondary" gutterBottom>
-            Add some delicious food to get started!
+            Añade prendas para comenzar
           </Typography>
           <Button variant="contained" onClick={() => navigate('/')} sx={{ mt: 2 }}>
-            Browse Restaurants
+            Explorar Departamentos
           </Button>
         </Box>
       </Container>
@@ -129,7 +129,7 @@ const CartPage: React.FC = () => {
   return (
     <Container maxWidth="lg">
       <Typography variant="h3" component="h1" gutterBottom>
-        Your Cart
+        Tu Carrito
       </Typography>
 
       <Box sx={{ display: 'flex', gap: 4, flexDirection: { xs: 'column', md: 'row' } }}>
@@ -139,14 +139,14 @@ const CartPage: React.FC = () => {
             <CardContent>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
                 <Typography variant="h5">
-                  Items ({cart.items.length})
+                  Artículos ({cart.items.length})
                 </Typography>
                 <Button
                   color="error"
                   onClick={clearCart}
                   disabled={cart.items.length === 0}
                 >
-                  Clear Cart
+                  Vaciar Carrito
                 </Button>
               </Box>
 
@@ -220,7 +220,7 @@ const CartPage: React.FC = () => {
         <Box sx={{ width: { xs: '100%', md: 350 } }}>
           <Paper sx={{ p: 3, position: 'sticky', top: 24 }}>
             <Typography variant="h5" gutterBottom>
-              Order Summary
+              Resumen del Pedido
             </Typography>
             
             <Box sx={{ space: 2 }}>
@@ -229,11 +229,11 @@ const CartPage: React.FC = () => {
                 <Typography>${cart.subTotal.toFixed(2)}</Typography>
               </Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                <Typography>Tax</Typography>
+                <Typography>Impuestos</Typography>
                 <Typography>${cart.tax.toFixed(2)}</Typography>
               </Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-                <Typography>Delivery Fee</Typography>
+                <Typography>Gastos de Envío</Typography>
                 <Typography>${cart.deliveryFee.toFixed(2)}</Typography>
               </Box>
               <Divider sx={{ my: 2 }} />
@@ -254,7 +254,7 @@ const CartPage: React.FC = () => {
               onClick={handleCheckout}
               sx={{ mb: 2 }}
             >
-              Proceed to Checkout
+              Realizar Pedido
             </Button>
             
             <Button
@@ -262,7 +262,7 @@ const CartPage: React.FC = () => {
               fullWidth
               onClick={() => navigate('/')}
             >
-              Continue Shopping
+              Seguir Comprando
             </Button>
           </Paper>
         </Box>

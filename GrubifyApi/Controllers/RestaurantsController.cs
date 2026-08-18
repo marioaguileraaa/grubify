@@ -12,72 +12,72 @@ namespace GrubifyApi.Controllers
             new Restaurant
             {
                 Id = 1,
-                Name = "Tony's Italian Bistro",
-                Description = "Authentic Italian cuisine with fresh ingredients and traditional recipes",
-                ImageUrl = "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
-                CuisineType = "Italian",
+                Name = "Moda Hombre",
+                Description = "Colección exclusiva de moda masculina con las últimas tendencias",
+                ImageUrl = "https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=800&h=600&fit=crop",
+                CuisineType = "Hombre",
                 Rating = 4.8,
-                DeliveryTime = "25-40 min",
-                DeliveryFee = 2.99m,
-                MinimumOrder = 15.00m,
+                DeliveryTime = "2-4 días",
+                DeliveryFee = 3.99m,
+                MinimumOrder = 25.00m,
                 IsOpen = true,
-                Address = "123 Main St, Downtown"
+                Address = "Planta 2, Gran Vía 32, Madrid"
             },
             new Restaurant
             {
                 Id = 2,
-                Name = "Sakura Sushi",
-                Description = "Fresh sushi and Japanese dishes made by expert chefs",
-                ImageUrl = "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=800&h=600&fit=crop",
-                CuisineType = "Japanese",
-                Rating = 4.7,
-                DeliveryTime = "30-45 min",
+                Name = "Moda Mujer",
+                Description = "Diseños elegantes y contemporáneos para la mujer moderna",
+                ImageUrl = "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&h=600&fit=crop",
+                CuisineType = "Mujer",
+                Rating = 4.9,
+                DeliveryTime = "2-4 días",
                 DeliveryFee = 3.99m,
-                MinimumOrder = 20.00m,
+                MinimumOrder = 25.00m,
                 IsOpen = true,
-                Address = "456 Oak Ave, Midtown"
+                Address = "Planta 3, Gran Vía 32, Madrid"
             },
             new Restaurant
             {
                 Id = 3,
-                Name = "Spice Garden",
-                Description = "Flavorful Indian curries and tandoor specialties",
-                ImageUrl = "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&h=600&fit=crop",
-                CuisineType = "Indian",
-                Rating = 4.6,
-                DeliveryTime = "35-50 min",
-                DeliveryFee = 2.49m,
-                MinimumOrder = 18.00m,
+                Name = "Moda Infantil",
+                Description = "Ropa cómoda y divertida para los más pequeños de la casa",
+                ImageUrl = "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=800&h=600&fit=crop",
+                CuisineType = "Niños",
+                Rating = 4.7,
+                DeliveryTime = "2-4 días",
+                DeliveryFee = 2.99m,
+                MinimumOrder = 15.00m,
                 IsOpen = true,
-                Address = "789 Spice Lane, Eastside"
+                Address = "Planta 4, Gran Vía 32, Madrid"
             },
             new Restaurant
             {
                 Id = 4,
-                Name = "Burger Hub",
-                Description = "Gourmet burgers and crispy fries made to perfection",
-                ImageUrl = "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop",
-                CuisineType = "American",
-                Rating = 4.5,
-                DeliveryTime = "20-35 min",
-                DeliveryFee = 1.99m,
-                MinimumOrder = 12.00m,
+                Name = "Accesorios",
+                Description = "Complementos premium: bolsos, cinturones, gafas y más",
+                ImageUrl = "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800&h=600&fit=crop",
+                CuisineType = "Accesorios",
+                Rating = 4.6,
+                DeliveryTime = "1-3 días",
+                DeliveryFee = 2.49m,
+                MinimumOrder = 20.00m,
                 IsOpen = true,
-                Address = "321 Burger Blvd, Westside"
+                Address = "Planta 1, Gran Vía 32, Madrid"
             },
             new Restaurant
             {
                 Id = 5,
-                Name = "Green Bowl",
-                Description = "Healthy bowls, salads, and smoothies for a balanced lifestyle",
-                ImageUrl = "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&h=600&fit=crop",
-                CuisineType = "Healthy",
-                Rating = 4.4,
-                DeliveryTime = "15-30 min",
-                DeliveryFee = 2.99m,
-                MinimumOrder = 10.00m,
+                Name = "Calzado",
+                Description = "Zapatos de calidad para cada ocasión: formal, casual y deportivo",
+                ImageUrl = "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=600&fit=crop",
+                CuisineType = "Calzado",
+                Rating = 4.5,
+                DeliveryTime = "2-5 días",
+                DeliveryFee = 4.99m,
+                MinimumOrder = 30.00m,
                 IsOpen = true,
-                Address = "654 Health St, Northside"
+                Address = "Planta 1, Gran Vía 32, Madrid"
             }
         };
 

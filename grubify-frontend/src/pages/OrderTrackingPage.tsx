@@ -18,7 +18,7 @@ import {
 } from '@mui/material';
 import {
   CheckCircle as CheckCircleIcon,
-  RestaurantMenu as RestaurantIcon,
+  Inventory as InventoryIcon,
   LocalShipping as DeliveryIcon,
   Home as HomeIcon,
 } from '@mui/icons-material';
@@ -27,11 +27,11 @@ import { Order, OrderStatus } from '../types';
 import { orderService } from '../services/api';
 
 const orderSteps = [
-  { label: 'Order Placed', icon: <CheckCircleIcon />, status: OrderStatus.Placed },
-  { label: 'Order Confirmed', icon: <CheckCircleIcon />, status: OrderStatus.Confirmed },
-  { label: 'Preparing Food', icon: <RestaurantIcon />, status: OrderStatus.Preparing },
-  { label: 'Out for Delivery', icon: <DeliveryIcon />, status: OrderStatus.OutForDelivery },
-  { label: 'Delivered', icon: <HomeIcon />, status: OrderStatus.Delivered },
+  { label: 'Pedido Realizado', icon: <CheckCircleIcon />, status: OrderStatus.Placed },
+  { label: 'Pedido Confirmado', icon: <CheckCircleIcon />, status: OrderStatus.Confirmed },
+  { label: 'Preparando Pedido', icon: <InventoryIcon />, status: OrderStatus.Preparing },
+  { label: 'En Camino', icon: <DeliveryIcon />, status: OrderStatus.OutForDelivery },
+  { label: 'Entregado', icon: <HomeIcon />, status: OrderStatus.Delivered },
 ];
 
 const getStatusColor = (status: OrderStatus) => {
@@ -55,21 +55,21 @@ const getStatusColor = (status: OrderStatus) => {
 const getStatusText = (status: OrderStatus) => {
   switch (status) {
     case OrderStatus.Placed:
-      return 'Placed';
+      return 'Realizado';
     case OrderStatus.Confirmed:
-      return 'Confirmed';
+      return 'Confirmado';
     case OrderStatus.Preparing:
-      return 'Preparing';
+      return 'Preparando';
     case OrderStatus.ReadyForPickup:
-      return 'Ready for Pickup';
+      return 'Listo para Recoger';
     case OrderStatus.OutForDelivery:
-      return 'Out for Delivery';
+      return 'En Camino';
     case OrderStatus.Delivered:
-      return 'Delivered';
+      return 'Entregado';
     case OrderStatus.Cancelled:
-      return 'Cancelled';
+      return 'Cancelado';
     default:
-      return 'Unknown';
+      return 'Desconocido';
   }
 };
 
@@ -97,7 +97,7 @@ const OrderTrackingPage: React.FC = () => {
       setOrder(orderData);
       setError(null);
     } catch (err) {
-      setError('Failed to load order details. Please try again later.');
+      setError('Error al cargar los detalles del pedido. Inténtalo de nuevo más tarde.');
       console.error('Error fetching order:', err);
     } finally {
       setLoading(false);
@@ -110,12 +110,12 @@ const OrderTrackingPage: React.FC = () => {
 
   const getEstimatedDeliveryTime = (order: Order) => {
     if (order.status === OrderStatus.Delivered) {
-      return `Delivered at ${new Date(order.deliveryTime || order.orderDate).toLocaleTimeString()}`;
+      return `Entregado a las ${new Date(order.deliveryTime || order.orderDate).toLocaleTimeString()}`;
     }
     
     const orderDate = new Date(order.orderDate);
     const estimatedTime = new Date(orderDate.getTime() + order.estimatedDeliveryTime * 60000);
-    return `Estimated delivery: ${estimatedTime.toLocaleTimeString()}`;
+    return `Entrega estimada: ${estimatedTime.toLocaleTimeString()}`;
   };
 
   if (loading) {
@@ -130,11 +130,11 @@ const OrderTrackingPage: React.FC = () => {
     return (
       <Container maxWidth="md">
         <Alert severity="error" sx={{ mt: 4 }}>
-          {error || 'Order not found'}
+          {error || 'Pedido no encontrado'}
         </Alert>
         <Box display="flex" justifyContent="center" mt={2}>
           <Button variant="contained" onClick={() => navigate('/')}>
-            Back to Home
+            Volver al Inicio
           </Button>
         </Box>
       </Container>
@@ -146,7 +146,7 @@ const OrderTrackingPage: React.FC = () => {
   return (
     <Container maxWidth="lg">
       <Typography variant="h3" component="h1" gutterBottom>
-        Order Tracking
+        Seguimiento del Pedido
       </Typography>
 
       <Box sx={{ display: 'flex', gap: 4, flexDirection: { xs: 'column', lg: 'row' } }}>
@@ -193,11 +193,11 @@ const OrderTrackingPage: React.FC = () => {
                     </StepLabel>
                     <StepContent>
                       <Typography variant="body2" color="text.secondary">
-                        {index === 0 && 'Your order has been placed successfully.'}
-                        {index === 1 && 'The restaurant has confirmed your order.'}
-                        {index === 2 && 'The restaurant is preparing your food.'}
-                        {index === 3 && 'Your food is on the way!'}
-                        {index === 4 && 'Your order has been delivered. Enjoy your meal!'}
+                        {index === 0 && 'Tu pedido se ha realizado correctamente.'}
+                        {index === 1 && 'Tu pedido ha sido confirmado.'}
+                        {index === 2 && 'Estamos preparando tu pedido.'}
+                        {index === 3 && '¡Tu pedido está en camino!'}
+                        {index === 4 && 'Tu pedido ha sido entregado. ¡Disfrútalo!'}
                       </Typography>
                     </StepContent>
                   </Step>
@@ -210,7 +210,7 @@ const OrderTrackingPage: React.FC = () => {
           <Card>
             <CardContent>
               <Typography variant="h6" gutterBottom>
-                Restaurant Details
+                Detalles del Departamento
               </Typography>
               <Typography variant="body1" gutterBottom>
                 {order.restaurant.name}
@@ -227,20 +227,20 @@ const OrderTrackingPage: React.FC = () => {
           {/* Delivery Address */}
           <Paper sx={{ p: 3, mb: 3 }}>
             <Typography variant="h6" gutterBottom>
-              Delivery Address
+              Dirección de Envío
             </Typography>
             <Typography variant="body2">
               {order.deliveryAddress}
             </Typography>
             <Typography variant="body2" sx={{ mt: 1 }}>
-              Phone: {order.customerPhone}
+              Teléfono: {order.customerPhone}
             </Typography>
           </Paper>
 
           {/* Order Items */}
           <Paper sx={{ p: 3, mb: 3 }}>
             <Typography variant="h6" gutterBottom>
-              Order Items
+              Artículos del Pedido
             </Typography>
             {order.items.map((item) => (
               <Box key={item.id} sx={{ display: 'flex', gap: 2, mb: 2 }}>
@@ -260,7 +260,7 @@ const OrderTrackingPage: React.FC = () => {
                     {item.quantity}x {item.foodItem.name}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    ${item.foodItem.price.toFixed(2)} each
+                    ${item.foodItem.price.toFixed(2)} c/u
                   </Typography>
                   {item.specialInstructions && (
                     <Typography variant="caption" sx={{ fontStyle: 'italic' }}>
@@ -278,7 +278,7 @@ const OrderTrackingPage: React.FC = () => {
           {/* Order Summary */}
           <Paper sx={{ p: 3 }}>
             <Typography variant="h6" gutterBottom>
-              Order Summary
+              Resumen del Pedido
             </Typography>
             
             <Box sx={{ space: 2 }}>
@@ -287,11 +287,11 @@ const OrderTrackingPage: React.FC = () => {
                 <Typography variant="body2">${order.subTotal.toFixed(2)}</Typography>
               </Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                <Typography variant="body2">Tax</Typography>
+                <Typography variant="body2">Impuestos</Typography>
                 <Typography variant="body2">${order.tax.toFixed(2)}</Typography>
               </Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-                <Typography variant="body2">Delivery Fee</Typography>
+                <Typography variant="body2">Gastos de Envío</Typography>
                 <Typography variant="body2">${order.deliveryFee.toFixed(2)}</Typography>
               </Box>
               <Divider sx={{ my: 2 }} />
@@ -304,7 +304,7 @@ const OrderTrackingPage: React.FC = () => {
                 </Typography>
               </Box>
               <Typography variant="body2" color="text.secondary">
-                Paid via {order.paymentMethod}
+                Pagado con {order.paymentMethod}
               </Typography>
             </Box>
           </Paper>
@@ -316,7 +316,7 @@ const OrderTrackingPage: React.FC = () => {
               fullWidth
               onClick={() => navigate('/')}
             >
-              Order Again
+              Comprar de Nuevo
             </Button>
             {order.status !== OrderStatus.Delivered && order.status !== OrderStatus.Cancelled && (
               <Button
@@ -328,7 +328,7 @@ const OrderTrackingPage: React.FC = () => {
                   console.log('Cancel order');
                 }}
               >
-                Cancel Order
+                Cancelar Pedido
               </Button>
             )}
           </Box>
