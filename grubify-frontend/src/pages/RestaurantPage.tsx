@@ -23,7 +23,7 @@ import {
   Add as AddIcon,
   Remove as RemoveIcon,
   AccessTime as TimeIcon,
-  DeliveryDining as DeliveryIcon,
+  LocalShipping as DeliveryIcon,
   Star as StarIcon,
 } from '@mui/icons-material';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -59,7 +59,7 @@ const RestaurantPage: React.FC = () => {
       setMenuItems(menuData);
       setError(null);
     } catch (err) {
-      setError('Failed to load restaurant data. Please try again later.');
+      setError('Error al cargar los datos del departamento. Inténtalo de nuevo más tarde.');
       console.error('Error fetching restaurant data:', err);
     } finally {
       setLoading(false);
@@ -109,11 +109,11 @@ const RestaurantPage: React.FC = () => {
     return (
       <Container maxWidth="md">
         <Alert severity="error" sx={{ mt: 4 }}>
-          {error || 'Restaurant not found'}
+          {error || 'Departamento no encontrado'}
         </Alert>
         <Box display="flex" justifyContent="center" mt={2}>
           <Button variant="contained" onClick={() => navigate('/')}>
-            Back to Home
+            Volver al Inicio
           </Button>
         </Box>
       </Container>
@@ -156,7 +156,7 @@ const RestaurantPage: React.FC = () => {
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Rating value={restaurant.rating} precision={0.1} readOnly />
               <Typography variant="body1" sx={{ ml: 1 }}>
-                {restaurant.rating.toFixed(1)} rating
+                {restaurant.rating.toFixed(1)} valoración
               </Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -168,7 +168,7 @@ const RestaurantPage: React.FC = () => {
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <DeliveryIcon sx={{ mr: 1, color: 'text.secondary' }} />
               <Typography variant="body1">
-                ${restaurant.deliveryFee.toFixed(2)} delivery
+                ${restaurant.deliveryFee.toFixed(2)} envío
               </Typography>
             </Box>
             <Chip label={restaurant.cuisineType} color="primary" />
@@ -210,13 +210,13 @@ const RestaurantPage: React.FC = () => {
                     </Typography>
                     <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
                       {item.isVegetarian && (
-                        <Chip label="Vegetarian" size="small" color="success" />
+                        <Chip label="Nuevo" size="small" color="info" />
                       )}
                       {item.isVegan && (
-                        <Chip label="Vegan" size="small" color="success" />
+                        <Chip label="Oferta" size="small" color="warning" />
                       )}
                       {item.isSpicy && (
-                        <Chip label="Spicy" size="small" color="error" />
+                        <Chip label="Exclusivo" size="small" color="secondary" />
                       )}
                     </Box>
                     <Typography variant="h6" color="primary" fontWeight="bold">
@@ -231,7 +231,7 @@ const RestaurantPage: React.FC = () => {
                       disabled={!item.isAvailable}
                       fullWidth
                     >
-                      {item.isAvailable ? 'Add to Cart' : 'Unavailable'}
+                      {item.isAvailable ? 'Añadir al Carrito' : 'Agotado'}
                     </Button>
                   </CardActions>
                 </Box>
@@ -243,7 +243,7 @@ const RestaurantPage: React.FC = () => {
 
       {/* Add to Cart Dialog */}
       <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)} maxWidth="sm" fullWidth>
-        <DialogTitle>Add to Cart</DialogTitle>
+        <DialogTitle>Añadir al Carrito</DialogTitle>
         <DialogContent>
           {selectedItem && (
             <Box>
@@ -258,7 +258,7 @@ const RestaurantPage: React.FC = () => {
               </Typography>
               
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, my: 3 }}>
-                <Typography variant="body1">Quantity:</Typography>
+                <Typography variant="body1">Cantidad:</Typography>
                 <IconButton onClick={() => setQuantity(Math.max(1, quantity - 1))}>
                   <RemoveIcon />
                 </IconButton>
@@ -270,20 +270,20 @@ const RestaurantPage: React.FC = () => {
               
               <TextField
                 fullWidth
-                label="Special instructions (optional)"
+                label="Instrucciones especiales (opcional)"
                 multiline
                 rows={3}
                 value={specialInstructions}
                 onChange={(e) => setSpecialInstructions(e.target.value)}
-                placeholder="e.g., no onions, extra spicy, etc."
+                placeholder="ej., talla M, color azul, etc."
               />
             </Box>
           )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setDialogOpen(false)}>Cancel</Button>
+          <Button onClick={() => setDialogOpen(false)}>Cancelar</Button>
           <Button onClick={confirmAddToCart} variant="contained">
-            Add to Cart - ${selectedItem ? (selectedItem.price * quantity).toFixed(2) : '0.00'}
+            Añadir al Carrito - ${selectedItem ? (selectedItem.price * quantity).toFixed(2) : '0.00'}
           </Button>
         </DialogActions>
       </Dialog>
